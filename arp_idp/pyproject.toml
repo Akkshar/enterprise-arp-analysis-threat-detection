@@ -1,0 +1,34 @@
+[project]
+name = "arpguard"
+version = "0.1.0"
+description = "Context-aware ARP Intrusion Detection & Prevention (IDP) for enterprise LANs."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Stuti Zingade" },
+    { name = "Ritika Tulsyan" },
+    { name = "Akkshar Ranjan" },
+]
+dependencies = [
+    "scapy>=2.5",
+    "typer>=0.12",
+    "rich>=13.7",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+arpguard = "main:app"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["main"]
+packages = ["config", "src", "src.models", "src.detection", "src.ingestion",
+            "src.prevention", "src.evaluation", "src.data", "src.utils"]

@@ -1,0 +1,146 @@
+! =====================================================================
+!  Switch SW1 - Catalyst 2960, multi-VLAN access + IDP SPAN port
+!  Project: Enterprise ARP Analysis & Threat Detection
+!  Team   : Stuti Zingade, Ritika Tulsyan, Akkshar Ranjan
+!
+!  Port map:
+!    Gi0/1  -> R1          (802.1Q trunk, DAI + DHCP-snoop TRUSTED)
+!    Fa0/1  -> PC1  VLAN10  (192.168.10.10)
+!    Fa0/2  -> PC2  VLAN10  (192.168.10.20)
+!    Fa0/3  -> Server VLAN20 (192.168.20.30)
+!    Fa0/4  -> Guest  VLAN30 (192.168.30.50)
+!    Fa0/24 -> IDP SENSOR   (SPAN destination - sees all VLANs)
+! =====================================================================
+
+enable
+configure terminal
+!
+hostname SW1
+no ip domain-lookup
+service password-encryption
+enable secret Cisco@Enable123
+username netadmin privilege 15 secret Cisco@Admin123
+!
+vlan 10
+ name USERS
+vlan 20
+ name SERVERS
+vlan 30
+ name GUEST
+!
+interface Vlan10
+ description Management SVI
+ ip address 192.168.10.2 255.255.255.0
+ no shutdown
+ip default-gateway 192.168.10.1
+!
+! ---------------------------------------------------------------------
+! Trunk to R1 - trusted for DHCP snooping and Dynamic ARP Inspection
+! ---------------------------------------------------------------------
+interface GigabitEthernet0/1
+ description TRUNK to R1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+ ip dhcp snooping trust
+ ip arp inspection trust
+!
+! ---------------------------------------------------------------------
+! Access ports - one MAC each, port security + ARP rate limit
+! ---------------------------------------------------------------------
+interface FastEthernet0/1
+ description PC1 VLAN10
+ switchport mode access
+ switchport access vlan 10
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ ip arp inspection limit rate 15
+!
+interface FastEthernet0/2
+ description PC2 VLAN10
+ switchport mode access
+ switchport access vlan 10
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ ip arp inspection limit rate 15
+!
+interface FastEthernet0/3
+ description SERVER VLAN20
+ switchport mode access
+ switchport access vlan 20
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ ip arp inspection limit rate 15
+!
+interface FastEthernet0/4
+ description GUEST VLAN30
+ switchport mode access
+ switchport access vlan 30
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ ip arp inspection limit rate 15
+!
+! ---------------------------------------------------------------------
+! Dynamic ARP Inspection + DHCP snooping (the switch-side prevention)
+! ---------------------------------------------------------------------
+ip dhcp snooping
+ip dhcp snooping vlan 10,20,30
+no ip dhcp snooping information option
+ip arp inspection vlan 10,20,30
+ip arp inspection validate src-mac dst-mac ip
+!
+! For static-IP hosts (server), add an ARP ACL so DAI permits them:
+arp access-list SERVER-STATIC
+ permit ip host 192.168.20.30 mac host 001a.2b00.a030
+ip arp inspection filter SERVER-STATIC vlan 20
+!
+! ---------------------------------------------------------------------
+! SPAN / mirror session feeding the IDP sensor (arpguard watch)
+! Mirrors all three VLANs to the sensor port so it sees every ARP.
+! ---------------------------------------------------------------------
+monitor session 1 source vlan 10 , 20 , 30 rx
+monitor session 1 destination interface FastEthernet0/24
+!
+interface FastEthernet0/24
+ description IDP SENSOR (SPAN destination)
+!
+! Shut unused ports
+interface range FastEthernet0/5 - 23
+ shutdown
+!
+line console 0
+ logging synchronous
+ login local
+line vty 0 4
+ transport input ssh
+ login local
+!
+service timestamps log datetime msec
+logging buffered 16384 informational
+!
+end
+copy running-config startup-config
+!
+! =====================================================================
+!  Verify:
+!    show vlan brief
+!    show interfaces trunk
+!    show mac address-table dynamic
+!    show port-security
+!    show ip arp inspection
+!    show ip arp inspection statistics
+!    show ip dhcp snooping binding
+!    show monitor session 1
+! =====================================================================

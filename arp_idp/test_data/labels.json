@@ -1,0 +1,86 @@
+{
+  "generated": "2026-10-24T11:33:26",
+  "variant": "single",
+  "episodes": [
+    {
+      "id": 0,
+      "type": "normal_resolution",
+      "label": "benign",
+      "start": 1792812600.0,
+      "end": 1792812601.003,
+      "n_packets": 4
+    },
+    {
+      "id": 1,
+      "type": "dhcp_renewal",
+      "label": "benign",
+      "start": 1792812660.0,
+      "end": 1792812660.5,
+      "n_packets": 2
+    },
+    {
+      "id": 2,
+      "type": "device_move",
+      "label": "benign",
+      "start": 1792812720.0,
+      "end": 1792812720.4,
+      "n_packets": 2
+    },
+    {
+      "id": 3,
+      "type": "server_failover",
+      "label": "benign",
+      "start": 1792812780.0,
+      "end": 1792812780.6,
+      "n_packets": 3
+    },
+    {
+      "id": 4,
+      "type": "onboarding",
+      "label": "benign",
+      "start": 1792812840.0,
+      "end": 1792812840.5,
+      "n_packets": 2
+    },
+    {
+      "id": 5,
+      "type": "gateway_impersonation",
+      "label": "attack",
+      "start": 1792787400.0,
+      "end": 1792787401.5,
+      "n_packets": 4
+    },
+    {
+      "id": 6,
+      "type": "gratuitous_poisoning",
+      "label": "attack",
+      "start": 1792812960.0,
+      "end": 1792812961.5,
+      "n_packets": 4
+    },
+    {
+      "id": 7,
+      "type": "mitm_relay",
+      "label": "attack",
+      "start": 1792813020.0,
+      "end": 1792813021.0,
+      "n_packets": 4
+    },
+    {
+      "id": 8,
+      "type": "arp_flood",
+      "label": "attack",
+      "start": 1792813080.0,
+      "end": 1792813081.77,
+      "n_packets": 60
+    },
+    {
+      "id": 9,
+      "type": "duplicate_ip_conflict",
+      "label": "attack",
+      "start": 1792813140.0,
+      "end": 1792813143.1,
+      "n_packets": 12
+    }
+  ]
+}

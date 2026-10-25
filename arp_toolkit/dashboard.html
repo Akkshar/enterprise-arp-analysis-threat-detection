@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARP Threat Detection — Dashboard</title>
+<style>
+  :root {
+    --bg:#1b1448; --panel:#241A5C; --panel2:#2B2552; --line:#3a3270;
+    --fg:#ffffff; --muted:#9a93c0; --accent:#00A99D;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
+  header { display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  h1 { font-size:20px; margin:0; letter-spacing:.3px; }
+  h1 .accent { color:var(--accent); }
+  .sub { color:var(--muted); font-size:13px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:1px;
+    color:var(--muted); margin:28px 0 12px; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px; margin-top:20px; }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:18px 16px; }
+  .kpi-num { font-size:30px; font-weight:700; color:var(--accent); }
+  .kpi-lab { color:var(--muted); font-size:13px; margin-top:4px; }
+  table { width:100%; border-collapse:collapse; background:var(--panel);
+    border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th,td { text-align:left; padding:10px 14px; font-size:14px;
+    border-bottom:1px solid var(--line); }
+  th { background:var(--panel2); color:var(--muted); font-weight:600;
+    text-transform:uppercase; font-size:11px; letter-spacing:.6px; }
+  tr:last-child td { border-bottom:none; }
+  td.num, td.mono { font-variant-numeric:tabular-nums; }
+  .mono { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:13px; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:999px;
+    font-size:11px; font-weight:700; letter-spacing:.4px; }
+  .num { color:var(--accent); font-weight:600; }
+  .hist-row { display:flex; align-items:center; gap:12px; padding:9px 14px;
+    background:var(--panel); border:1px solid var(--line); border-top:none; font-size:14px; }
+  .hist-row:first-of-type { border-top:1px solid var(--line);
+    border-radius:12px 12px 0 0; }
+  .hist-row:last-of-type { border-radius:0 0 12px 12px; }
+  .hist-time { color:var(--muted); width:84px; flex:none; }
+  .hist-text { flex:1; }
+  .muted { color:var(--muted); }
+  footer { color:var(--muted); font-size:12px; margin-top:28px;
+    border-top:1px solid var(--line); padding-top:14px; }
+  .cols { display:grid; grid-template-columns:1fr; gap:10px; }
+</style></head>
+<body><div class="wrap">
+  <header>
+    <div>
+      <h1>Enterprise <span class="accent">ARP Threat Detection</span></h1>
+      <div class="sub">Context-aware anomaly detection &amp; mitigation · Review 2 dashboard</div>
+    </div>
+    <div class="sub">Generated 2026-10-24 00:54 · alert tier ≥ MEDIUM</div>
+  </header>
+
+  <div class="kpis"><div class="kpi"><div class="kpi-num">100</div><div class="kpi-lab">ARP packets analysed</div></div><div class="kpi"><div class="kpi-num">4</div><div class="kpi-lab">Active incidents (Crit/High)</div></div><div class="kpi"><div class="kpi-num">0.0%</div><div class="kpi-lab">False-positive rate</div></div><div class="kpi"><div class="kpi-num">140 ms</div><div class="kpi-lab">Mean detection latency</div></div></div>
+
+  <h2>Flagged devices</h2>
+  <table>
+    <tr><th>Offending MAC</th><th>Claimed IP</th><th>Baseline MAC</th>
+        <th>Top signal</th><th>Score</th><th>Risk</th></tr>
+    <tr><td class="mono">de:ad:be:ef:00:66</td><td class="mono">192.168.10.1</td><td class="mono">00:1a:2b:00:00:01</td><td>gateway_impersonation</td><td>121.0</td><td><span class="badge" style="background:#FF5A5F;color:#fff">CRITICAL</span></td></tr><tr><td class="mono">de:ad:be:ef:00:66</td><td class="mono">192.168.10.1</td><td class="mono">00:1a:2b:00:00:01</td><td>gateway_impersonation</td><td>115.0</td><td><span class="badge" style="background:#FF5A5F;color:#fff">CRITICAL</span></td></tr><tr><td class="mono">de:ad:be:ef:00:77</td><td class="mono">192.168.10.40</td><td class="mono">00:1a:2b:00:00:40</td><td>duplicate_ip</td><td>139.0</td><td><span class="badge" style="background:#FF5A5F;color:#fff">CRITICAL</span></td></tr><tr><td class="mono">de:ad:be:ef:00:66</td><td class="mono">192.168.10.30</td><td class="mono">00:1a:2b:00:00:30</td><td>mac_change</td><td>85.0</td><td><span class="badge" style="background:#FFB020;color:#241A5C">HIGH</span></td></tr><tr><td class="mono">de:ad:be:ef:00:66</td><td class="mono">192.168.10.10</td><td class="mono">de:ad:be:ef:00:66</td><td>mac_change</td><td>55.0</td><td><span class="badge" style="background:#3D8BFD;color:#fff">MEDIUM</span></td></tr><tr><td class="mono">de:ad:be:ef:00:66</td><td class="mono">192.168.10.200</td><td class="mono">de:ad:be:ef:00:66</td><td>abnormal_rate</td><td>63.0</td><td><span class="badge" style="background:#3D8BFD;color:#fff">MEDIUM</span></td></tr><tr><td class="mono">00:1a:2b:00:0b:10</td><td class="mono">192.168.10.10</td><td class="mono">00:1a:2b:00:0b:10</td><td>unknown_device</td><td>25.0</td><td><span class="badge" style="background:#00A99D;color:#fff">LOW</span></td></tr><tr><td class="mono">00:1a:2b:00:00:31</td><td class="mono">192.168.10.30</td><td class="mono">00:1a:2b:00:00:30</td><td>duplicate_ip</td><td>38.5</td><td><span class="badge" style="background:#00A99D;color:#fff">LOW</span></td></tr><tr><td class="mono">00:1a:2b:00:0a:20</td><td class="mono">192.168.10.20</td><td class="mono">00:1a:2b:00:0a:20</td><td>mac_change</td><td>8.0</td><td><span class="badge" style="background:#6B6890;color:#fff">INFO</span></td></tr>
+  </table>
+
+  <h2>Measured performance</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Basis</th></tr>
+    <tr><td>Detection rate</td><td class="num">100.0%</td><td>5/5 attacks caught</td></tr><tr><td>False-positive rate</td><td class="num">0.0%</td><td>0/5 benign flagged</td></tr><tr><td>Mean / max latency</td><td class="num">140 / 600 ms</td><td>first malicious ARP → alert</td></tr><tr><td>Mitigation effect</td><td class="num">80.0%</td><td>detected attacks given a containing action</td></tr>
+  </table>
+  <div class="sub" style="margin-top:8px">Confusion matrix (alert tier ≥ MEDIUM):
+    TP=5 · FN=0 · FP=0 · TN=5
+    over 5 attack and 5 benign episodes.</div>
+
+  <h2>Incident history</h2>
+  <div class="cols"><div class="hist-row"><span class="hist-time mono">02:00:00</span><span class="badge" style="background:#FF5A5F;color:#fff">CRITICAL</span><span class="hist-text">192.168.10.1 claimed by de:ad:be:ef:00:66 <span class="muted">(gateway_impersonation, unknown_device)</span></span></div><div class="hist-row"><span class="hist-time mono">09:01:00</span><span class="badge" style="background:#6B6890;color:#fff">INFO</span><span class="hist-text">192.168.10.20 claimed by 00:1a:2b:00:0a:20 <span class="muted">(mac_change)</span></span></div><div class="hist-row"><span class="hist-time mono">09:02:00</span><span class="badge" style="background:#00A99D;color:#fff">LOW</span><span class="hist-text">192.168.10.10 claimed by 00:1a:2b:00:0b:10 <span class="muted">(mac_change, unknown_device)</span></span></div><div class="hist-row"><span class="hist-time mono">09:03:00</span><span class="badge" style="background:#00A99D;color:#fff">LOW</span><span class="hist-text">192.168.10.30 claimed by 00:1a:2b:00:00:31 <span class="muted">(mac_change, duplicate_ip)</span></span></div><div class="hist-row"><span class="hist-time mono">09:06:00</span><span class="badge" style="background:#FFB020;color:#241A5C">HIGH</span><span class="hist-text">192.168.10.30 claimed by de:ad:be:ef:00:66 <span class="muted">(mac_change, unknown_device)</span></span></div><div class="hist-row"><span class="hist-time mono">09:07:00</span><span class="badge" style="background:#FF5A5F;color:#fff">CRITICAL</span><span class="hist-text">192.168.10.1 claimed by de:ad:be:ef:00:66 <span class="muted">(gateway_impersonation, unknown_device)</span></span></div><div class="hist-row"><span class="hist-time mono">09:07:00</span><span class="badge" style="background:#3D8BFD;color:#fff">MEDIUM</span><span class="hist-text">192.168.10.10 claimed by de:ad:be:ef:00:66 <span class="muted">(mac_change, unknown_device)</span></span></div><div class="hist-row"><span class="hist-time mono">09:08:00</span><span class="badge" style="background:#3D8BFD;color:#fff">MEDIUM</span><span class="hist-text">192.168.10.200 claimed by de:ad:be:ef:00:66 <span class="muted">(unknown_device, abnormal_rate)</span></span></div><div class="hist-row"><span class="hist-time mono">09:09:00</span><span class="badge" style="background:#FF5A5F;color:#fff">CRITICAL</span><span class="hist-text">192.168.10.40 claimed by de:ad:be:ef:00:77 <span class="muted">(mac_change, duplicate_ip, unknown_device)</span></span></div></div>
+
+  <footer>
+    All figures are measured from a detector run over the labelled synthetic
+    dataset (<span class="mono">test_data/arp_dataset.pcap</span>), not mock values.
+    The sensor detects, scores and recommends; enforcement (DAI / port quarantine)
+    remains with the switch.
+  </footer>
+</div></body></html>

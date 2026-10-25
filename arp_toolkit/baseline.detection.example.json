@@ -1,0 +1,32 @@
+{
+  "_comment": "Trusted baseline for the ARP threat detector. Anchors are never silently overwritten. dhcp_events and maintenance windows let the engine EXPLAIN benign change instead of alerting. Times are epoch seconds; the example times line up with make_captures.py's synthetic dataset (2026-10-24).",
+
+  "gateways": {
+    "192.168.10.1": "00:1a:2b:00:00:01"
+  },
+
+  "static_hosts": {
+    "192.168.10.30": "00:1a:2b:00:00:30"
+  },
+
+  "known_macs": [
+    "00:1a:2b:00:00:01",
+    "00:1a:2b:00:00:10",
+    "00:1a:2b:00:00:20",
+    "00:1a:2b:00:00:30",
+    "00:1a:2b:00:00:31",
+    "00:1a:2b:00:00:40"
+  ],
+
+  "business_hours": [8, 20],
+
+  "dhcp_events": [
+    {"ip": "192.168.10.20", "mac": "00:1a:2b:00:0a:20", "time": 1792422660, "window": 180},
+    {"ip": "192.168.10.50", "mac": "00:1a:2b:00:00:50", "time": 1792422840, "window": 180}
+  ],
+
+  "maintenance": [
+    {"start": 1792422780, "end": 1792422800, "ip": "192.168.10.10"},
+    {"start": 1792422960, "end": 1792422985, "ip": "192.168.10.30"}
+  ]
+}

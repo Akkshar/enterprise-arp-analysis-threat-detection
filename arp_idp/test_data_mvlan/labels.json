@@ -1,0 +1,62 @@
+{
+  "generated": "2026-10-24T10:51:33",
+  "variant": "multivlan",
+  "episodes": [
+    {
+      "id": 0,
+      "type": "v10_user_resolution",
+      "label": "benign",
+      "start": 1792812600.0,
+      "end": 1792812601.003,
+      "n_packets": 4
+    },
+    {
+      "id": 1,
+      "type": "v20_server_access",
+      "label": "benign",
+      "start": 1792812660.0,
+      "end": 1792812660.003,
+      "n_packets": 2
+    },
+    {
+      "id": 2,
+      "type": "v30_guest_onboarding",
+      "label": "benign",
+      "start": 1792812720.0,
+      "end": 1792812720.5,
+      "n_packets": 2
+    },
+    {
+      "id": 3,
+      "type": "v10_gateway_impersonation",
+      "label": "attack",
+      "start": 1792787400.0,
+      "end": 1792787401.5,
+      "n_packets": 4
+    },
+    {
+      "id": 4,
+      "type": "v20_server_poisoning",
+      "label": "attack",
+      "start": 1792812840.0,
+      "end": 1792812841.5,
+      "n_packets": 4
+    },
+    {
+      "id": 5,
+      "type": "cross_vlan_lateral",
+      "label": "attack",
+      "start": 1792812900.0,
+      "end": 1792812901.3,
+      "n_packets": 4
+    },
+    {
+      "id": 6,
+      "type": "v30_arp_flood",
+      "label": "attack",
+      "start": 1792812960.0,
+      "end": 1792812961.77,
+      "n_packets": 60
+    }
+  ]
+}

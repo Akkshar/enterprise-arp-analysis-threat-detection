@@ -1,0 +1,58 @@
+# ARP IDP - detection signal weights, context factors and tier thresholds.
+# Every signal a detector can raise MUST have a base weight here; the engine
+# fails fast otherwise (mirrors rugscan's YAML-driven scoring).
+
+# Points contributed at each severity level.
+base_weight:
+  INFO: 5
+  LOW: 15
+  MEDIUM: 40
+  HIGH: 70
+  CRITICAL: 100
+
+# Total incident score -> tier (first threshold met, high to low).
+tier_thresholds:
+  CRITICAL: 100
+  HIGH: 70
+  MEDIUM: 40
+  LOW: 15
+  INFO: 0
+
+# Base severity of each detection signal.
+signals:
+  gateway_impersonation:
+    severity: CRITICAL
+    unlowerable: true       # context can never reduce a gateway claim
+  mac_change_anchor:
+    severity: HIGH
+  mac_change_host:
+    severity: MEDIUM
+  duplicate_ip:
+    severity: HIGH
+  abnormal_rate:
+    severity: MEDIUM
+  unknown_device:
+    severity: LOW
+  cross_vlan:
+    severity: MEDIUM       # one MAC seen in two VLANs (lateral movement)
+
+# Context factors that raise or lower a signal's points.
+context_factors:
+  dhcp_explained: 0.2         # MAC change matches a DHCP renewal
+  maintenance_window: 0.25    # change inside an authorised window
+  failover_window: 0.3        # duplicate IP during a known failover
+  off_hours: 1.3              # activity outside business hours
+  unknown_mac_involved: 1.2   # an unknown MAC is part of the event
+  off_hours_unknown: 1.4      # unknown device seen off-hours
+
+# Detection thresholds.
+rate_window_seconds: 5.0
+rate_threshold: 20
+incident_gap_seconds: 10.0
+
+# Response policy: minimum tier that triggers each prevention action.
+response_policy:
+  recommend_from: MEDIUM      # always emit a recommendation at/above this
+  pin_anchor_from: HIGH       # pin anchor bindings via static ARP
+  quarantine_from: HIGH       # generate switch err-disable commands
+  reassert_from: CRITICAL     # broadcast corrective gratuitous ARP

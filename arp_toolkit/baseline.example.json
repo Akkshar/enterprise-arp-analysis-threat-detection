@@ -1,0 +1,8 @@
+{
+  "_comment": "Trusted IP -> MAC bindings for the project topology. Fill in real MACs from your lab, then pass this file to arp_audit.py --baseline and copy the values into STATIC_BINDINGS in arp_monitor.py. Any deviation is flagged.",
+  "192.168.10.1":  "aa:bb:cc:00:00:01",
+  "192.168.10.10": "aa:bb:cc:00:00:10",
+  "192.168.10.20": "aa:bb:cc:00:00:20",
+  "192.168.10.30": "aa:bb:cc:00:00:30",
+  "192.168.10.40": "aa:bb:cc:00:00:40"
+}

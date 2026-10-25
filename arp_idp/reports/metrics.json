@@ -1,0 +1,92 @@
+{
+  "alert_tier": "MEDIUM",
+  "episodes": {
+    "attack": 5,
+    "benign": 5
+  },
+  "confusion": {
+    "TP": 5,
+    "FN": 0,
+    "FP": 0,
+    "TN": 5
+  },
+  "detection_rate": 1.0,
+  "false_positive_rate": 0.0,
+  "latency_ms": {
+    "mean": 140.0,
+    "max": 600.0
+  },
+  "mitigation_effect": 0.8,
+  "per_episode": [
+    {
+      "id": 0,
+      "type": "normal_resolution",
+      "label": "benign",
+      "top_tier": "-",
+      "verdict": "TN"
+    },
+    {
+      "id": 1,
+      "type": "dhcp_renewal",
+      "label": "benign",
+      "top_tier": "INFO",
+      "verdict": "TN"
+    },
+    {
+      "id": 2,
+      "type": "device_move",
+      "label": "benign",
+      "top_tier": "LOW",
+      "verdict": "TN"
+    },
+    {
+      "id": 3,
+      "type": "server_failover",
+      "label": "benign",
+      "top_tier": "LOW",
+      "verdict": "TN"
+    },
+    {
+      "id": 4,
+      "type": "onboarding",
+      "label": "benign",
+      "top_tier": "-",
+      "verdict": "TN"
+    },
+    {
+      "id": 5,
+      "type": "gateway_impersonation",
+      "label": "attack",
+      "top_tier": "CRITICAL",
+      "verdict": "TP"
+    },
+    {
+      "id": 6,
+      "type": "gratuitous_poisoning",
+      "label": "attack",
+      "top_tier": "HIGH",
+      "verdict": "TP"
+    },
+    {
+      "id": 7,
+      "type": "mitm_relay",
+      "label": "attack",
+      "top_tier": "CRITICAL",
+      "verdict": "TP"
+    },
+    {
+      "id": 8,
+      "type": "arp_flood",
+      "label": "attack",
+      "top_tier": "MEDIUM",
+      "verdict": "TP"
+    },
+    {
+      "id": 9,
+      "type": "duplicate_ip_conflict",
+      "label": "attack",
+      "top_tier": "CRITICAL",
+      "verdict": "TP"
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+[
+  {
+    "first_time": 1792787400.0,
+    "last_time": 1792787401.5,
+    "claimed_ip": "192.168.10.1",
+    "offending_mac": "de:ad:be:ef:00:66",
+    "baseline_mac": "00:1a:2b:00:00:01",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "gateway_impersonation",
+        "base_tier": "CRITICAL",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:66 claims gateway 192.168.10.1 (anchor 00:1a:2b:00:00:01)",
+        "points": 100.0
+      },
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.4,
+        "detail": "de:ad:be:ef:00:66 not in known inventory [off-hours]",
+        "points": 21.0
+      }
+    ],
+    "score": 121.0,
+    "tier": "CRITICAL",
+    "escalations": [
+      [
+        1792787400.0,
+        "CRITICAL"
+      ]
+    ],
+    "first_iso": "2026-10-24T02:00:00",
+    "mitigation": "Quarantine the switch port; drop via DAI; notify SOC immediately."
+  },
+  {
+    "first_time": 1792812660.0,
+    "last_time": 1792812660.0,
+    "claimed_ip": "192.168.10.20",
+    "offending_mac": "00:1a:2b:00:0a:20",
+    "baseline_mac": "00:1a:2b:00:0a:20",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "mac_change",
+        "base_tier": "MEDIUM",
+        "context_factor": 0.2,
+        "detail": "192.168.10.20: 00:1a:2b:00:00:20 -> 00:1a:2b:00:0a:20 [DHCP-explained]",
+        "points": 8.0
+      }
+    ],
+    "score": 8.0,
+    "tier": "INFO",
+    "escalations": [
+      [
+        1792812660.0,
+        "INFO"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:01:00",
+    "mitigation": "Record for trend analysis only."
+  },
+  {
+    "first_time": 1792812720.0,
+    "last_time": 1792812720.4,
+    "claimed_ip": "192.168.10.10",
+    "offending_mac": "00:1a:2b:00:0b:10",
+    "baseline_mac": "00:1a:2b:00:0b:10",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "mac_change",
+        "base_tier": "MEDIUM",
+        "context_factor": 0.25,
+        "detail": "192.168.10.10: 00:1a:2b:00:00:10 -> 00:1a:2b:00:0b:10 [maintenance window]",
+        "points": 10.0
+      },
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.0,
+        "detail": "00:1a:2b:00:0b:10 not in known inventory",
+        "points": 15.0
+      }
+    ],
+    "score": 25.0,
+    "tier": "LOW",
+    "escalations": [
+      [
+        1792812720.0,
+        "LOW"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:02:00",
+    "mitigation": "Log for history; confirm the device during next onboarding review."
+  },
+  {
+    "first_time": 1792812780.3,
+    "last_time": 1792812780.6,
+    "claimed_ip": "192.168.10.30",
+    "offending_mac": "00:1a:2b:00:00:31",
+    "baseline_mac": "00:1a:2b:00:00:30",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "mac_change",
+        "base_tier": "HIGH",
+        "context_factor": 0.25,
+        "detail": "192.168.10.30: 00:1a:2b:00:00:30 -> 00:1a:2b:00:00:31 [maintenance window]",
+        "points": 17.5
+      },
+      {
+        "name": "duplicate_ip",
+        "base_tier": "HIGH",
+        "context_factor": 0.3,
+        "detail": "192.168.10.30 claimed by ['00:1a:2b:00:00:30', '00:1a:2b:00:00:31'] [failover/maintenance window]",
+        "points": 21.0
+      }
+    ],
+    "score": 38.5,
+    "tier": "LOW",
+    "escalations": [
+      [
+        1792812780.3,
+        "LOW"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:03:00",
+    "mitigation": "Log for history; confirm the device during next onboarding review."
+  },
+  {
+    "first_time": 1792812960.0,
+    "last_time": 1792812961.5,
+    "claimed_ip": "192.168.10.30",
+    "offending_mac": "de:ad:be:ef:00:66",
+    "baseline_mac": "00:1a:2b:00:00:30",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "mac_change",
+        "base_tier": "HIGH",
+        "context_factor": 1.0,
+        "detail": "192.168.10.30: 00:1a:2b:00:00:30 -> de:ad:be:ef:00:66",
+        "points": 70.0
+      },
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:66 not in known inventory",
+        "points": 15.0
+      }
+    ],
+    "score": 85.0,
+    "tier": "HIGH",
+    "escalations": [
+      [
+        1792812960.0,
+        "HIGH"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:06:00",
+    "mitigation": "Isolate/verify the device; drop forged ARP via DAI; raise priority ticket."
+  },
+  {
+    "first_time": 1792813020.0,
+    "last_time": 1792813021.0,
+    "claimed_ip": "192.168.10.1",
+    "offending_mac": "de:ad:be:ef:00:66",
+    "baseline_mac": "00:1a:2b:00:00:01",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "gateway_impersonation",
+        "base_tier": "CRITICAL",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:66 claims gateway 192.168.10.1 (anchor 00:1a:2b:00:00:01)",
+        "points": 100.0
+      },
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:66 not in known inventory",
+        "points": 15.0
+      }
+    ],
+    "score": 115.0,
+    "tier": "CRITICAL",
+    "escalations": [
+      [
+        1792813020.0,
+        "CRITICAL"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:07:00",
+    "mitigation": "Quarantine the switch port; drop via DAI; notify SOC immediately."
+  },
+  {
+    "first_time": 1792813020.4,
+    "last_time": 1792813020.4,
+    "claimed_ip": "192.168.10.10",
+    "offending_mac": "de:ad:be:ef:00:66",
+    "baseline_mac": "de:ad:be:ef:00:66",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "mac_change",
+        "base_tier": "MEDIUM",
+        "context_factor": 1.0,
+        "detail": "192.168.10.10: 00:1a:2b:00:0b:10 -> de:ad:be:ef:00:66",
+        "points": 40.0
+      },
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:66 not in known inventory",
+        "points": 15.0
+      }
+    ],
+    "score": 55.0,
+    "tier": "MEDIUM",
+    "escalations": [
+      [
+        1792813020.4,
+        "MEDIUM"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:07:00",
+    "mitigation": "Raise a ticket; watch the device; verify the binding against inventory."
+  },
+  {
+    "first_time": 1792813080.0,
+    "last_time": 1792813081.77,
+    "claimed_ip": "192.168.10.200",
+    "offending_mac": "de:ad:be:ef:00:66",
+    "baseline_mac": "de:ad:be:ef:00:66",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:66 not in known inventory",
+        "points": 15.0
+      },
+      {
+        "name": "abnormal_rate",
+        "base_tier": "MEDIUM",
+        "context_factor": 1.2,
+        "detail": "de:ad:be:ef:00:66 sent 21 ARP in 5s (threshold 20)",
+        "points": 48.0
+      }
+    ],
+    "score": 63.0,
+    "tier": "MEDIUM",
+    "escalations": [
+      [
+        1792813080.0,
+        "LOW"
+      ],
+      [
+        1792813080.6,
+        "MEDIUM"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:08:00",
+    "mitigation": "Raise a ticket; watch the device; verify the binding against inventory."
+  },
+  {
+    "first_time": 1792813140.1,
+    "last_time": 1792813143.1,
+    "claimed_ip": "192.168.10.40",
+    "offending_mac": "de:ad:be:ef:00:77",
+    "baseline_mac": "00:1a:2b:00:00:40",
+    "vlan": null,
+    "port": null,
+    "signals": [
+      {
+        "name": "mac_change",
+        "base_tier": "MEDIUM",
+        "context_factor": 1.0,
+        "detail": "192.168.10.40: 00:1a:2b:00:00:40 -> de:ad:be:ef:00:77",
+        "points": 40.0
+      },
+      {
+        "name": "duplicate_ip",
+        "base_tier": "HIGH",
+        "context_factor": 1.2,
+        "detail": "192.168.10.40 claimed by ['00:1a:2b:00:00:40', 'de:ad:be:ef:00:77']",
+        "points": 84.0
+      },
+      {
+        "name": "unknown_device",
+        "base_tier": "LOW",
+        "context_factor": 1.0,
+        "detail": "de:ad:be:ef:00:77 not in known inventory",
+        "points": 15.0
+      }
+    ],
+    "score": 139.0,
+    "tier": "CRITICAL",
+    "escalations": [
+      [
+        1792813140.1,
+        "CRITICAL"
+      ]
+    ],
+    "first_iso": "2026-10-24T09:09:00",
+    "mitigation": "Quarantine the switch port; drop via DAI; notify SOC immediately."
+  }
+]

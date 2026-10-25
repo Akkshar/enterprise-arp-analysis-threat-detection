@@ -1,0 +1,13 @@
+# Enterprise ARP Analysis toolkit - Python dependencies
+#
+# arp_audit.py needs NOTHING beyond the Python standard library.
+# The packet tools need scapy; the pcap analyzer can optionally use dpkt.
+#
+#   pip install -r requirements.txt
+#
+# On Windows you ALSO need Npcap (not a pip package):
+#   https://npcap.com  -> install with "WinPcap API-compatible Mode" checked.
+# On Linux/macOS, run the packet tools with sudo (raw-socket access).
+
+scapy>=2.5.0
+dpkt>=1.9.8        # optional: only for pcap_analyzer.py --engine dpkt
